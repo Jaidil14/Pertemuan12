@@ -19,9 +19,8 @@ class DefaultContainerApp : ContainerApp {
     val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
-
     val klien = OkHttpClient.Builder()
-        .addInterceptor (logging)
+        .addInterceptor(logging)
         .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
@@ -36,7 +35,7 @@ class DefaultContainerApp : ContainerApp {
         .client(klien)
         .build()
 
-    private val retrofitService: ServiceApiSiswa by lazy {
+    private val retrofitService : ServiceApiSiswa by lazy {
         retrofit.create(ServiceApiSiswa::class.java)
     }
 
@@ -46,9 +45,9 @@ class DefaultContainerApp : ContainerApp {
 }
 
 class AplikasiDataSiswa : Application() {
-    lateinit var ContainerApp : ContainerApp
+    lateinit var container : ContainerApp
     override fun onCreate() {
         super.onCreate()
-        this.ContainerApp = DefaultContainerApp()
+        this.container = DefaultContainerApp()
     }
 }
